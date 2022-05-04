@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <title>Subneteo</title>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="https://www.unisabana.edu.co" target="blank" class="logo nav-link"><img src="assets/images/Unisabana.png" class="logo-nav-image"></a>
+            <ul class="nav-menu">
+                <li class="nav-menu-item"><a href="contact.html" target="blank" class="nav-menu-link nav-link"> Integrantes </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="text-box">
+        <center>
+            <p><h1><b>Subneteo de red con VLSM</b></h1></p>
+            <br>
+        </center>
+        <blockquote>
+            <center><h1>Resumen</h1></center>
+            <p> El subneteo o subnetting se refiere a la división de una red IP física en múltiples subredes lógicas con el objetivo de que cada una de estas trabajen 
+                a nivel de envio y recepcion de paquetes con una red independiente, aunque todas se encuentren en la misma red física y el mismo dominio, el subneteo 
+                permite una mejor administración, control de tráfico y seguridad al segmentar una red por funciones específica, además de que se recomienda el subneteo 
+                de una red porque de esta manera se mejora el rendimiento de esta al minimizar el tráfico a nivel broadcast dentro del dominio de red, el subneteo funciona
+                 tomando y convirtiendo los bits de la porción de Host para así administrarlos con el fin de realizar los segmentos correspondientes dentro de una misma 
+                 red.
+            </p>
+            <br>
+            <center><img src="assets/images/cyberspace-2784907_1920.jpg" class="image-pos-brief">
+                <p id="image-foot-1">Imágen tomada de Pixabay.com, licencia CC:BY</p>
+            </center>
+            <br>
+            <center><h1>Introducción</h1></center>
+            <p> El presente informe se  realizó con el fin de brindar una soluciones coherente y funcional a la problemática planteada en el taller Workshop propuesto 
+                durante la clase de Redes y Comunicación de Datos en donde se nos contextualiza la problemática a solucionar de la siguiente manera:
+            </p>
+            <br>
+            <p>
+                “El administrador principal de red de la empresa Connecting WAN, cuya topología de red se muestra en la Figura 1, dispone  de los  espacios  de  
+                direcciones  IP tabulados en la Tabla  1. El  administrador  le  pide  a  usted y  a  su equipo plantear una propuesta de división de redes para las 
+                subredes presentadas en la topología de red,teniendo en cuenta lo siguiente:"
+            </p>
+            <p></p>
+            <center>
+                <img src="assets/images/Figure 1.png" class="image-figure1">
+            </center>
+            <br>
+            <center><h1>Procedimiento</h1></center>
+            <p>Para dar inicio a la solución del problema, debemos regresar al enunciado y percatarnos de la primera instrucción, 
+                “... dispone  de los  espacios  de  direcciones  IP tabulados en la Tabla  1.”, posterior a esto, se debe revisar la tabla 1 donde al 
+                observar cada uno de los espacios de direcciones,  nos damos cuenta que estos poseen una X, la cual tiene una instrucción dada, esta instrucción 
+                es la siguiente: 
+            </p>
+            <br>
+            <center>
+                <img src="assets/images/Figure 2.png" class="image-figure2">
+            </center>
+            <br>
+            <p>En este caso, nuestro grupo se identifica con el número “1”, una vez ya sabiendo esto, nuestra tabla de redes queda de la siguiente manera:</p>
+            <br>
+            <img src="assets/images/Figure 3.png" class="image-figure3">
+            <br>
+            <p>Ahora empezaremos con el paso a paso de la solución. En primera medida se deben ordenar de mayor a menor las Vlans propociodanas
+             para cada ubicación, 
+                tal como se muestra a continuación:
+                <br>
+                <h2>Red Bogotá D.C</h2>
+                <ul>
+                    <li>Vlan 100 - Usiarios de tecnología</li>
+                    <li>Vlan 60 - Usuarios de Gestión</li>
+                    <li>Vlan 50 - Usuarios de ingeniería</li>
+                </ul>
+                <br>
+                <h2>Red España</h2>
+                <ul>
+                    <li>Vlan 125 - Usuarios de gestión</li>
+                    <li>Vlan 75 - Usuarios de Vicepresidencia</li>
+                    <li>Vlan 25 - Usuarios de Tesorería</li>
+                </ul>
+            </p>
+            <br>
+            <p>Antes de continuar, debemos verificar la topología de red, para analizarla y así poder seguir con el procedimiento:
+                <center>
+                    <img src="assets/images/Figure 5.png" class="image-figure1">
+                </center>
+            </p>
+        <br>
+        <p>En primera medida debemos analizar los dispositivos presentes en la topología, donde podremos encontrar:
+            <br>
+            <ul>
+                <li>Servidores (No tenidos en cuenta para el desarrollo del ejercicio)</li>
+                <li>Routers: Estos son dispositivos de capa 3 los cuales se encargan del enrutamiento de los datos (MODELO OSI Y DISPOSITIVOS de RED POR CAPA, n.d.)</li>
+                <li>Switches:Estos son dispositivos de capa 2 los cuales se encargan de la transmisión de los datos dentro de una red de dispositivos (MODELO OSI Y DISPOSITIVOS de RED POR CAPA, n.d.)</li>
+                <li>Multilayer Switch: los switches multicapa se implementan en las capas de núcleo y de distribución de la red conmutada de una organización. 
+                    Los switches multicapa se caracterizan por la capacidad de crear una tabla de routing, por admitir algunos protocolos de routing y por reenviar los 
+                    paquetes IP a una velocidad similar a la de reenvío de capa 2. Los switches multicapa suelen admitir hardware especializado, como los circuitos 
+                    integrados de aplicación específica (1.2.1.5 Switching Multicapa, 2022), además de esto, es importante destacar que estos dispositivos ahorran a nivel monetario, porque poseen la capacidad de
+                    transmitir los datos entre la capa 2 y 3, por eso afirmo y cito: "Los switches multilayer  pueden operar tanto en Capa 2 como en Capa 3 (InterVLAN). En Capa 2 funciona entre interfaces asignados a VLANs de Capa 2 o a Trunks de Capa 2. 
+                    En Capa 3 funciona entre cualquier tipo de interface mientras esta tenga una IP asignada.
+                    Un switch multilayer puede asigna una IP a una interface física lo mismo que un router aunque también puede asigna una IP a una interface lógica 
+                    (que se llaman Switched Virtual Interface SVI) que representa la VLAN entera. La IP que se configura se convierte en el Gateway por defecto para cualquier 
+                    servidor que esté conectado a la interface o VLAN, con lo cual el servidor usará la interface de Capa 3 para comunicarse con el exterior de su dominio de broadcast" (Iñaki Martínez Díez I.M.D, 2018).
+                </li>
+                <li>PC: Conjunto de circuitos electrónicos encargados de generar peticiones y recibir respuestas dentro de una topología de red.</li>
+            </ul>
+        </p>
+        <br>
+        <p>Continuando con el procedimiento y volviendo a la imagen de la topología, debemos analizar el número de interfaces que posee dicha red, a continuación señalaremos cada interfaz y daremos el número total de estas:</p>
+        <center>
+            <img src="assets/images/Figure 4.png" class="image-figure1">
+        </center>
+        <br>
+        <p>Al hacer el conteo de las interfaces, nos percatamos de que tenemos un total de 44 interfaces de red en está topología, con esto finalizamos el análisis de la topología.</p>
+        <br>
+        <p>Como segunda instancia vamos a identificar los bits necesarios por cada subred, para facilitarnos la vida harémos una tabla, tabla que contendrá un máximo de 2^7, este valor dado por la VLAN 125 de España, tal como se muestra a continuación:</p>
+        <br>
+        <center><img src="assets/images/Figure 6.png" class="image-figure1"></center>
+        <br>
+        <p>Ya con la tabla, empezaremos a identificar los hosts necesarios para cada subred:</p>
+        <br>
+        <p>
+            <h2>RED BOGOTÁ</h2>
+            <ul>
+                <li>Usuarios de técnología = 2^7 = 126 Host</li>
+                <li>Usuarios de gestión = 2^6 = 62 Host</li>
+                <li>Usuarios de ingeniería = 2^6 = 62 Host</li>
+            </ul>
+            <br>
+            <h2>RED ESPAÑA</h2>
+            <ul>
+                <li>Usuarios de gestión = 2^7 = 126 Host</li>
+                <li>Usuarios de vicepresidencia = 2^7 = 126 Host</li>
+                <li>Usuarios de tesorería = 2^5 = 30 Host</li>
+            </ul>
+        </p>
+        <br>
+        <p>Una vez terminado nuestro proceso de host necesarios por cada subred, vamos a identificar la nueva máscara de red para cada subred:</p>
+        <br>
+        <h2>RED BOGOTÁ</h2>
+        <br>
+        <center><img src="assets/images/Figure 6,1.png" class="image-figure3"></center>
+        <br>
+        <h2>RED ESPAÑA</h2>
+        <br>
+        <center><img src="assets/images/Figure 7.png" class="image-figure3"></center>
+        <br>
+        <p>Ya que sabemos cuál es nuestra nueva máscara de subred, procederemos a calcular las nuevas subredes, tal como se muestra a continuación:</p>
+        <br>
+        <h2>RED BOGOTÁ</h2>
+        <br>
+        <center><img src="assets/images/Figure 8.png" class="image-figure3"></center>
+        <br>
+        <h2>RED ESPAÑA</h2>
+        <br>
+        <center><img src="assets/images/Figure 9.png" class="image-figure3"></center>
+        <br>
+        <p>Como siguiente paso, vamos a calcular la dirección Broadcast:</p>
+        <br>
+        <h2>RED BOGOTÁ</h2>
+        <br>
+        <center><img src="assets/images/Figure 10.png" class="image-figure3"></center>
+        <br>
+        <h2>RED ESPAÑA</h2>
+        <br>
+        <center><img src="assets/images/Figure 11.png" class="image-figure3"></center>
+        <br>
+        <p>Ya nos acercamos al final de la propuesta de subneteo, pero antes de terminar debemos calcular la primera y la última dirección del host por cada subred:</p>
+        <br>
+        <h2>RED BOGOTÁ</h2>
+        <br>
+        <center><img src="assets/images/Figure 12.png" class="image-figure3"></center>
+        <br>
+        <h2>RED ESPAÑA</h2>
+        <br>
+        <center><img src="assets/images/Figure 13.png" class="image-figure3"></center>
+        <br>
+        <p>Como último paso, calcularemos la última dirección del host:</p>
+        <br>
+        <h2>RED BOGOTÁ</h2>
+        <br>
+        <center><img src="assets/images/Figure 14.png" class="image-figure3"></center>
+        <br>
+        <h2>RED ESPAÑA</h2>
+        <br>
+        <center><img src="assets/images/Figure 15.png" class="image-figure3"></center>
+        <br>
+        <p>Con este último paso, damos por finalizada nuestra propuesta de subneteo por localización, muchas gracias por su atención.</p>
+                    <br>
+                    <center>
+                        <h2>Referencias</h2>
+                        <br>
+                        <p>1. MODELO OSI Y DISPOSITIVOS DE RED POR CAPA. (n.d.). https://sistemamid.com/panel/uploads/biblioteca/2016-04-10_03-58-44133683.pdf</p>
+                        <br>
+                        <p>2. 1.2.1.5 Switching multicapa. (2022). Sapalomera.cat. https://www.sapalomera.cat/moodlecf/RS/3/course/module1/1.2.1.5/1.2.1.5.html</p>
+                        <br>
+                        <p>3. Iñaki Martínez Díez (I.M.D. (2018). Multilayer Switching. Imd.guru. https://www.imd.guru/redes/cisco/certificaciones/ccnp_route_switch/switch/multilayer-switching.html</p>
+                    </center>
+        </blockquote>
+
+    </div>
+</body>
+
+<footer class="foot-page ">
+    <center>
+        <br>
+        <p>Página desarrollada por el equipo</p>
+        <br>
+    </center>
+</footer>
+
+</html>
